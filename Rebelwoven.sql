@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jan 2025 pada 09.01
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Waktu pembuatan: 17 Agu 2025 pada 17.25
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,7 +76,10 @@ CREATE TABLE `tbl_history_penjualan` (
 --
 
 INSERT INTO `tbl_history_penjualan` (`idHistory`, `idToko`, `namaProduk`, `quantity`, `harga`, `total`, `tanggalJual`, `resi`) VALUES
-(21, 18, 'Samung Note 10', 1, 4500000, 4500000, '2025-01-02', 'RESI-6776462AC8451');
+(21, 18, 'Samung Note 10', 1, 4500000, 4500000, '2025-01-02', 'RESI-6776462AC8451'),
+(22, 18, 'Erigo', 1, 250000, 250000, '2025-07-19', 'RESI-687B62E13E54E'),
+(23, 18, 'Erigo', 1, 250000, 250000, '2025-07-19', 'RESI-687B631BADBFC'),
+(24, 18, 'Erigo', 1, 250000, 250000, '2025-07-19', 'RESI-687BAC9844A2A');
 
 -- --------------------------------------------------------
 
@@ -94,14 +97,14 @@ CREATE TABLE `tbl_kategori` (
 --
 
 INSERT INTO `tbl_kategori` (`idkat`, `namaKat`) VALUES
-(5, 'Samsung'),
-(6, 'Iphone'),
-(7, 'Vivo'),
-(8, 'Xiomi'),
-(9, 'Oppo'),
-(10, 'Realme'),
-(11, 'Infinix'),
-(12, 'Asus');
+(6, 'Wanita'),
+(7, 'Pria'),
+(8, 'Branded'),
+(9, 'Anak'),
+(10, 'Unisex'),
+(11, 'Sportswear'),
+(12, 'Vintage'),
+(20, 'Jaket');
 
 -- --------------------------------------------------------
 
@@ -126,8 +129,7 @@ CREATE TABLE `tbl_member` (
 --
 
 INSERT INTO `tbl_member` (`idKonsumen`, `username`, `password`, `namaKonsumen`, `alamat`, `idKota`, `email`, `tlpn`, `statusAktif`) VALUES
-(14, 'Hervian', 'vian', 'Alfonsus Hervian Hadi Winata', 'Jl. Mancasan Indah 3 No 14', 419, 'hervianhdw@gmail.com', 2147483647, 'Y'),
-(15, 'Firman', 'firman', 'Firmansyah Tri Budi Nuhroho', 'Jl Amikom Rt 10 No 20', 472, 'firmansyah@gmail.com', 2147483647, 'Y');
+(14, 'Febri', 'febri123', 'Febri Mistiya', 'Jl. Gempol Raya', 419, 'febri@gmail.com', 2147483647, 'Y');
 
 -- --------------------------------------------------------
 
@@ -164,7 +166,9 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`idOrder`, `idKonsumen`, `idToko`, `tglOrder`, `statusOrder`, `kurir`, `ongkir`, `idProduk`) VALUES
-(72, 15, 18, '2025-01-02', 'Dikemas', 'JNE Oke', 55000, 22);
+(73, 14, 18, '2025-07-19', 'Belum Bayar', 'JNE Oke', 7000, 22),
+(74, 14, 18, '2025-07-19', 'Belum Bayar', 'JNE Oke', 7000, 22),
+(75, 14, 18, '2025-07-19', 'Belum Bayar', 'JNE Oke', 7000, 22);
 
 -- --------------------------------------------------------
 
@@ -189,7 +193,7 @@ CREATE TABLE `tbl_produk` (
 --
 
 INSERT INTO `tbl_produk` (`idProduk`, `idKat`, `idToko`, `namaProduk`, `foto`, `harga`, `stok`, `berat`, `deskripsiProduk`) VALUES
-(22, 5, 18, 'Samung Note 10', 'Desain_tanpa_judul1.png', 4500000, 500, 150, 'Hp Spek Bagus Dengan Harga Murah');
+(22, 7, 18, 'Erigo', 'Desain_tanpa_judul (2).png', 250000, 500, 4, 'Oversize T-shirt Erigo akan menemani segala kegiatan dengan rasa nyaman! Pergi nongkrong sama teman, ke mall, minimarket, kencan bareng pacar atau jalan-jalan ke taman.\r\n\r\n\r\n\r\nT-shirt ini menggunakan bahan cotton combed 24s yang memberi sensasi sejuk, walaupun banyak beraktivitas di cuaca panas. Diprint dengan desain & logo ikonik, yang membuat penggunanya terlihat semakin keren. Jangan lupa bawa Coach Jacket agar tidak terkena angin saat menjelang malam.\r\n\r\n\r\n\r\nHighlights:\r\n\r\nCuttingan Oversize\r\n\r\nLengan Pendek\r\n\r\n\r\n\r\nBahan :\r\n\r\nBaju: Cotton Combed 24s\r\n\r\nSablon: High Density');
 
 -- --------------------------------------------------------
 
@@ -232,7 +236,7 @@ CREATE TABLE `tbl_toko` (
 --
 
 INSERT INTO `tbl_toko` (`idToko`, `idKonsumen`, `namaToko`, `logo`, `deskripsi`, `statusAktif`) VALUES
-(18, 14, 'Alfonsus Store', '_a85c6459-4fe6-46e6-91df-a4c040df90eb1.jpg', 'Menjual Handphone Gaming', 'Y');
+(18, 14, 'Rebelwoven by Febri Store', '_a85c6459-4fe6-46e6-91df-a4c040df90eb1.jpg', 'Temukan pakaian berkualitas yang kamu inginkan dari berbagai merk terbaik.', 'Y');
 
 --
 -- Indexes for dumped tables
@@ -326,19 +330,19 @@ ALTER TABLE `tbl_detail_order`
 -- AUTO_INCREMENT untuk tabel `tbl_history_penjualan`
 --
 ALTER TABLE `tbl_history_penjualan`
-  MODIFY `idHistory` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idHistory` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_kategori`
 --
 ALTER TABLE `tbl_kategori`
-  MODIFY `idkat` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idkat` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_member`
 --
 ALTER TABLE `tbl_member`
-  MODIFY `idKonsumen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idKonsumen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_ongkir`
@@ -350,7 +354,7 @@ ALTER TABLE `tbl_ongkir`
 -- AUTO_INCREMENT untuk tabel `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `idOrder` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `idOrder` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_produk`
